@@ -1,0 +1,911 @@
+<%- include('partials/header', { user, cartCount }) %>
+
+<div class="auth-container">
+    <div class="auth-background">
+        <!-- Animated background elements -->
+        <div class="auth-floating-element" style="top: 20%; left: 10%; animation-delay: 0s;">🚀</div>
+        <div class="auth-floating-element" style="top: 60%; left: 85%; animation-delay: 1s;">🎮</div>
+        <div class="auth-floating-element" style="top: 80%; left: 15%; animation-delay: 2s;">⭐</div>
+        <div class="auth-floating-element" style="top: 30%; left: 80%; animation-delay: 1.5s;">💎</div>
+    </div>
+    
+    <div class="auth-content">
+        <div class="auth-card" data-aos="fade-up">
+            <div class="auth-header">
+                <div class="auth-icon">
+                    <div class="icon-wrapper">
+                        🎯
+                    </div>
+                </div>
+                <h1>Join GameZone Community</h1>
+                <p>Create your account and start your gaming journey</p>
+            </div>
+
+            <form class="auth-form" id="registerForm">
+                <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                    <label for="username" class="form-label">
+                        <span class="label-icon">👤</span>
+                        Username
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="form-input"
+                            placeholder="Choose a unique username"
+                            required
+                            minlength="3"
+                            maxlength="20"
+                        >
+                        <span class="input-icon">🎮</span>
+                    </div>
+                    <div class="form-hint">3-20 characters, letters and numbers only</div>
+                </div>
+
+                <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+                    <label for="email" class="form-label">
+                        <span class="label-icon">📧</span>
+                        Email Address
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input"
+                            placeholder="Enter your email address"
+                            required
+                        >
+                        <span class="input-icon">✉️</span>
+                    </div>
+                </div>
+
+                <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+                    <label for="password" class="form-label">
+                        <span class="label-icon">🔒</span>
+                        Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input"
+                            placeholder="Create a strong password"
+                            required
+                            minlength="6"
+                        >
+                        <span class="input-icon">👁️</span>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="passwordStrength"></div>
+                        </div>
+                        <span class="strength-text" id="passwordStrengthText">Weak</span>
+                    </div>
+                </div>
+
+                <div class="form-group" data-aos="fade-up" data-aos-delay="250">
+                    <label for="password2" class="form-label">
+                        <span class="label-icon">✅</span>
+                        Confirm Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password2" 
+                            name="password2" 
+                            class="form-input"
+                            placeholder="Confirm your password"
+                            required
+                        >
+                        <span class="input-icon">👁️</span>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password2')">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="form-hint" id="passwordMatch"></div>
+                </div>
+
+                <div class="form-options" data-aos="fade-up" data-aos-delay="300">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="/terms" class="link">Terms of Service</a> and <a href="/privacy" class="link">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <div class="form-options" data-aos="fade-up" data-aos-delay="350">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <span class="checkmark"></span>
+                        Send me gaming news, updates, and special offers
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large auth-submit" data-aos="fade-up" data-aos-delay="400">
+                    <span class="btn-icon">🚀</span>
+                    Create GameZone Account
+                    <div class="btn-loading" style="display: none;">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </button>
+            </form>
+
+            <div class="auth-divider" data-aos="fade-up" data-aos-delay="500">
+                <span>or join with</span>
+            </div>
+
+            <div class="social-auth" data-aos="fade-up" data-aos-delay="600">
+                <button type="button" class="btn btn-social btn-google">
+                    <span>🔍</span>
+                    Google
+                </button>
+                <button type="button" class="btn btn-social btn-discord">
+                    <span>🎮</span>
+                    Discord
+                </button>
+                <button type="button" class="btn btn-social btn-twitter">
+                    <span>🐦</span>
+                    Twitter
+                </button>
+            </div>
+
+            <div class="auth-footer" data-aos="fade-up" data-aos-delay="700">
+                <p>
+                    Already have an account? 
+                    <a href="/login" class="auth-link">Sign in here</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Benefits Panel -->
+        <div class="benefits-panel" data-aos="fade-left" data-aos-delay="800">
+            <div class="benefits-header">
+                <h3>🎁 Join GameZone & Get</h3>
+                <p>Unlock amazing benefits for gamers</p>
+            </div>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛒</div>
+                    <div class="benefit-content">
+                        <strong>Exclusive Deals</strong>
+                        <span>Member-only discounts and early access</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⭐</div>
+                    <div class="benefit-content">
+                        <strong>Rewards Program</strong>
+                        <span>Earn points on every purchase</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚚</div>
+                    <div class="benefit-content">
+                        <strong>Free Shipping</strong>
+                        <span>On orders over $50</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎮</div>
+                    <div class="benefit-content">
+                        <strong>Game Previews</strong>
+                        <span>Early access to new releases</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">👥</div>
+                    <div class="benefit-content">
+                        <strong>Community Access</strong>
+                        <span>Join our gaming community</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💬</div>
+                    <div class="benefit-content">
+                        <strong>Priority Support</strong>
+                        <span>24/7 dedicated support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+
+<style>
+    .auth-container {
+        min-height: 100vh;
+        background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .auth-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+    }
+
+    .auth-floating-element {
+        position: absolute;
+        font-size: 2rem;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .auth-content {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 3rem;
+        max-width: 1200px;
+        width: 100%;
+        align-items: start;
+    }
+
+    .auth-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius-2xl);
+        padding: 3rem;
+        box-shadow: var(--shadow-2xl);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .auth-icon {
+        margin-bottom: 1.5rem;
+    }
+
+    .icon-wrapper {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .auth-header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .auth-header p {
+        color: var(--gray-500);
+        font-size: 1.125rem;
+    }
+
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: var(--dark);
+        font-size: 0.95rem;
+    }
+
+    .label-icon {
+        font-size: 1.1rem;
+    }
+
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 1rem 3rem 1rem 1rem;
+        border: 2px solid var(--gray-200);
+        border-radius: var(--radius-lg);
+        font-size: 1rem;
+        transition: var(--transition);
+        background: white;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .form-input:valid {
+        border-color: var(--success);
+    }
+
+    .form-input:invalid:not(:focus):not(:placeholder-shown) {
+        border-color: var(--error);
+    }
+
+    .input-icon {
+        position: absolute;
+        right: 1rem;
+        font-size: 1.1rem;
+        opacity: 0.5;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        opacity: 0.5;
+        transition: var(--transition);
+        z-index: 2;
+    }
+
+    .password-toggle:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    .form-hint {
+        font-size: 0.85rem;
+        color: var(--gray-500);
+        margin-top: 0.25rem;
+    }
+
+    /* Password Strength Meter */
+    .password-strength {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .strength-bar {
+        flex: 1;
+        height: 6px;
+        background: var(--gray-200);
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .strength-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    .strength-text {
+        font-size: 0.85rem;
+        font-weight: 600;
+        min-width: 60px;
+        text-align: right;
+    }
+
+    .strength-weak {
+        background: var(--error);
+        width: 33%;
+    }
+
+    .strength-medium {
+        background: var(--warning);
+        width: 66%;
+    }
+
+    .strength-strong {
+        background: var(--success);
+        width: 100%;
+    }
+
+    .form-options {
+        margin: 0.5rem 0;
+    }
+
+    .checkbox-wrapper {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        cursor: pointer;
+        font-size: 0.95rem;
+        color: var(--gray-700);
+        line-height: 1.4;
+    }
+
+    .checkbox-wrapper input {
+        margin-top: 0.25rem;
+    }
+
+    .checkmark {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--gray-300);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+    }
+
+    .checkbox-wrapper input:checked + .checkmark {
+        background: var(--primary);
+        border-color: var(--primary);
+    }
+
+    .checkmark::after {
+        content: '✓';
+        color: white;
+        font-size: 0.75rem;
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .checkbox-wrapper input:checked + .checkmark::after {
+        opacity: 1;
+    }
+
+    .link {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+    }
+
+    .link:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+    }
+
+    .auth-submit {
+        width: 100%;
+        margin-top: 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-icon {
+        font-size: 1.2rem;
+    }
+
+    .btn-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid transparent;
+        border-top: 2px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    .auth-divider {
+        text-align: center;
+        margin: 2rem 0;
+        position: relative;
+        color: var(--gray-500);
+    }
+
+    .auth-divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--gray-200);
+    }
+
+    .auth-divider span {
+        background: white;
+        padding: 0 1rem;
+        position: relative;
+    }
+
+    .social-auth {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .btn-social {
+        background: white;
+        border: 2px solid var(--gray-200);
+        color: var(--gray-700);
+        font-weight: 500;
+        transition: var(--transition);
+    }
+
+    .btn-social:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .btn-google:hover {
+        border-color: #DB4437;
+        color: #DB4437;
+    }
+
+    .btn-discord:hover {
+        border-color: #5865F2;
+        color: #5865F2;
+    }
+
+    .btn-twitter:hover {
+        border-color: #1DA1F2;
+        color: #1DA1F2;
+    }
+
+    .auth-footer {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-200);
+    }
+
+    .auth-footer p {
+        color: var(--gray-600);
+    }
+
+    .auth-link {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .auth-link:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+    }
+
+    /* Benefits Panel */
+    .benefits-panel {
+        background: var(--gradient-glass);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius-2xl);
+        padding: 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .benefits-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .benefits-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .benefits-header p {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .benefits-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        transition: var(--transition);
+        border: 1px solid transparent;
+    }
+
+    .benefit-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .benefit-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .benefit-content {
+        flex: 1;
+    }
+
+    .benefit-content strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+        color: white;
+    }
+
+    .benefit-content span {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.4;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .auth-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .benefits-panel {
+            order: -1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .auth-container {
+            padding: 1rem;
+        }
+        
+        .auth-card {
+            padding: 2rem;
+        }
+        
+        .social-auth {
+            grid-template-columns: 1fr;
+        }
+        
+        .benefits-panel {
+            padding: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .auth-card {
+            padding: 1.5rem;
+        }
+        
+        .auth-header h1 {
+            font-size: 2rem;
+        }
+        
+        .benefit-item {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+
+<script>
+    // Password toggle functionality
+    function togglePassword(fieldId) {
+        const passwordInput = document.getElementById(fieldId);
+        const toggleButton = passwordInput.parentElement.querySelector('.password-toggle');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleButton.textContent = '👁️‍🗨️';
+        } else {
+            passwordInput.type = 'password';
+            toggleButton.textContent = '👁️';
+        }
+    }
+
+    // Password strength checker
+    function checkPasswordStrength(password) {
+        let strength = 0;
+        const strengthBar = document.getElementById('passwordStrength');
+        const strengthText = document.getElementById('passwordStrengthText');
+
+        // Length check
+        if (password.length >= 8) strength += 1;
+        
+        // Lowercase check
+        if (/[a-z]/.test(password)) strength += 1;
+        
+        // Uppercase check
+        if (/[A-Z]/.test(password)) strength += 1;
+        
+        // Number check
+        if (/[0-9]/.test(password)) strength += 1;
+        
+        // Special character check
+        if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+        // Update strength meter
+        strengthBar.className = 'strength-fill';
+        if (strength <= 2) {
+            strengthBar.classList.add('strength-weak');
+            strengthText.textContent = 'Weak';
+            strengthText.style.color = 'var(--error)';
+        } else if (strength <= 4) {
+            strengthBar.classList.add('strength-medium');
+            strengthText.textContent = 'Medium';
+            strengthText.style.color = 'var(--warning)';
+        } else {
+            strengthBar.classList.add('strength-strong');
+            strengthText.textContent = 'Strong';
+            strengthText.style.color = 'var(--success)';
+        }
+    }
+
+    // Password match checker
+    function checkPasswordMatch() {
+        const password = document.getElementById('password').value;
+        const password2 = document.getElementById('password2').value;
+        const matchHint = document.getElementById('passwordMatch');
+
+        if (password2.length === 0) {
+            matchHint.textContent = '';
+            matchHint.style.color = '';
+        } else if (password === password2) {
+            matchHint.textContent = '✓ Passwords match';
+            matchHint.style.color = 'var(--success)';
+        } else {
+            matchHint.textContent = '✗ Passwords do not match';
+            matchHint.style.color = 'var(--error)';
+        }
+    }
+
+    // Form validation and submission
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('.auth-submit');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+        const btnIcon = submitBtn.querySelector('.btn-icon');
+        
+        // Get form values
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const password2 = document.getElementById('password2').value;
+        const terms = document.getElementById('terms').checked;
+
+        // Basic validation
+        if (!terms) {
+            if (window.showNotification) {
+                showNotification('Please agree to the Terms of Service', 'error');
+            }
+            return;
+        }
+
+        if (password !== password2) {
+            if (window.showNotification) {
+                showNotification('Passwords do not match', 'error');
+            }
+            return;
+        }
+
+        // Show loading state
+        btnIcon.style.display = 'none';
+        btnLoading.style.display = 'block';
+        submitBtn.disabled = true;
+
+        // Simulate API call
+        setTimeout(function() {
+            // Show success notification
+            if (window.showNotification) {
+                showNotification('🎉 Welcome to GameZone!', 'success', 'Your account has been created successfully');
+            }
+            
+            // Reset button state
+            btnIcon.style.display = 'inline-block';
+            btnLoading.style.display = 'none';
+            submitBtn.disabled = false;
+            
+            // Redirect to home page after successful registration
+            setTimeout(function() {
+                window.location.href = '/';
+            }, 2000);
+        }, 3000);
+    });
+
+    // Real-time validation
+    document.getElementById('password').addEventListener('input', function() {
+        checkPasswordStrength(this.value);
+        checkPasswordMatch();
+    });
+
+    document.getElementById('password2').addEventListener('input', checkPasswordMatch);
+
+    // Username validation
+    document.getElementById('username').addEventListener('input', function() {
+        const username = this.value;
+        const regex = /^[a-zA-Z0-9_]{3,20}$/;
+        
+        if (username.length > 0 && !regex.test(username)) {
+            this.style.borderColor = 'var(--error)';
+        } else if (username.length > 0) {
+            this.style.borderColor = 'var(--success)';
+        } else {
+            this.style.borderColor = '';
+        }
+    });
+
+    // Social login buttons
+    document.querySelectorAll('.btn-social').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            if (window.showNotification) {
+                showNotification('🔒 ' + this.textContent.trim() + ' integration coming soon!', 'warning');
+            }
+        });
+    });
+
+    // Add input animations
+    document.querySelectorAll('.form-input').forEach(function(input) {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .form-input:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: var(--error);
+        }
+    `;
+    document.head.appendChild(style);
+</script>

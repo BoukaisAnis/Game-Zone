@@ -1,0 +1,386 @@
+<%- include('partials/header', { user, cartCount }) %>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1 data-aos="fade-up">Level Up Your Gaming Experience</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Discover the ultimate collection of games, consoles, and accessories. From classic titles to the latest releases, we've got everything a true gamer needs.</p>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+            <a href="/shop" class="btn btn-primary btn-large">
+                <span>🎮</span>
+                Explore Games
+            </a>
+            <% if (!user) { %>
+                <a href="/register" class="btn btn-secondary btn-large">
+                    <span>⚡</span>
+                    Join Community
+                </a>
+            <% } else { %>
+                <a href="/products/add" class="btn btn-accent btn-large">
+                    <span>➕</span>
+                    Add Game
+                </a>
+            <% } %>
+        </div>
+    </div>
+    
+    <!-- Animated background elements -->
+    <div class="hero-background">
+        <div class="floating-element" style="top: 20%; left: 10%; animation-delay: 0s;">🎮</div>
+        <div class="floating-element" style="top: 60%; left: 85%; animation-delay: 1s;">🎯</div>
+        <div class="floating-element" style="top: 80%; left: 15%; animation-delay: 2s;">🔥</div>
+        <div class="floating-element" style="top: 30%; left: 80%; animation-delay: 1.5s;">⭐</div>
+        <div class="floating-element" style="top: 70%; left: 20%; animation-delay: 0.5s;">💎</div>
+    </div>
+</div>
+
+<div class="features">
+    <div class="container">
+        <h2 data-aos="fade-up">Why Gamers Love GameZone</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Experience gaming like never before with our premium services and exclusive features</p>
+        
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon">🚀</div>
+                <h3>Lightning Fast Delivery</h3>
+                <p>Get your games delivered in record time with our premium shipping options and same-day delivery in select areas</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon">🛡️</div>
+                <h3>Secure Transactions</h3>
+                <p>Shop with confidence using our bank-level security, SSL encryption, and fraud protection systems</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon">🎯</div>
+                <h3>Curated Collection</h3>
+                <p>Hand-picked games and accessories from top brands, indie developers, and exclusive partnerships</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon">💎</div>
+                <h3>Premium Support</h3>
+                <p>24/7 customer support from gaming experts who understand your needs and speak your language</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="icon">🔥</div>
+                <h3>Exclusive Deals</h3>
+                <p>Access member-only discounts, early releases, special bundles, and limited edition collectibles</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="700">
+                <div class="icon">🌍</div>
+                <h3>Global Community</h3>
+                <p>Connect with millions of gamers worldwide, share experiences, and join exclusive gaming events</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number" data-count="10000">0</div>
+                <div class="stat-label">Games Available</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number" data-count="500000">0</div>
+                <div class="stat-label">Happy Gamers</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number" data-count="150">0</div>
+                <div class="stat-label">Countries Served</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-number" data-count="24">0</div>
+                <div class="stat-label">Hour Support</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section">
+    <div class="container">
+        <div class="cta-content" data-aos="fade-up">
+            <h2>Ready to Level Up?</h2>
+            <p>Join thousands of gamers who trust GameZone for their gaming needs. Start your journey today!</p>
+            <div class="cta-buttons">
+                <a href="/shop" class="btn btn-primary btn-large">
+                    <span>🛒</span>
+                    Start Shopping
+                </a>
+                <% if (!user) { %>
+                    <a href="/register" class="btn btn-outline btn-large">
+                        <span>🎁</span>
+                        Get Started Free
+                    </a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+
+<style>
+    /* Hero Background Elements */
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .floating-element {
+        position: absolute;
+        font-size: 2rem;
+        opacity: 0.3;
+        animation: float 6s ease-in-out infinite;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    /* Stats Section */
+    .stats-section {
+        background: var(--gradient-dark);
+        color: white;
+        padding: 6rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stats-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 30% 70%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.2) 0%, transparent 50%);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .stat-card {
+        text-align: center;
+        padding: 2rem;
+        background: var(--gradient-glass);
+        border-radius: var(--radius-2xl);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-2xl);
+    }
+
+    .stat-number {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #fff, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 1.125rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 500;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        color: white;
+        padding: 8rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .cta-content h2 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #fff, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .cta-content p {
+        font-size: 1.375rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 3rem;
+        line-height: 1.6;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .cta-content h2 {
+            font-size: 3rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem !important;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .stat-card {
+            padding: 1.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Animated counter for stats
+    document.addEventListener('DOMContentLoaded', function() {
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target.toLocaleString();
+                }
+            };
+
+            // Start counting when element is in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            observer.observe(counter);
+        });
+
+        // Add floating animation to hero background elements
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 1.5}s`;
+        });
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    });
+
+    // Add AOS (Animate On Scroll) functionality
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = entry.target.getAttribute('data-aos-delay') || 0;
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, delay);
+            }
+        });
+    }, observerOptions);
+
+    // Initialize animations for elements with data-aos
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    });
+</script>

@@ -1,0 +1,64 @@
+<%- include('partials/header', { user, cartCount }) %>
+
+<div class="container">
+    <div class="shop-header">
+        <h1>Your Shopping Cart</h1>
+        <p>Review your selected games and proceed to checkout</p>
+    </div>
+
+    <% if (cart && cart.length > 0) { %>
+        <div class="cart-items">
+            <% cart.forEach(item => { %>
+                <div class="cart-item fade-in">
+                    <div class="item-image">
+                        <img src="<%= item.image %>" alt="<%= item.name %>" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUYyOTNBIi8+CjxwYXRoIGQ9Ik0xMjUgMTI1SDE3NVYxNzVIMTI1VjEyNVoiIGZpbGw9IiM2QzcyODQiLz4KPHA+JiN4MUYzQTA7PC9wPgo8L3N2Zz4K'"
+                             style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="item-info" style="flex-grow: 1;">
+                        <h3 style="margin-bottom: 0.5rem; color: var(--dark);"><%= item.name %></h3>
+                        <p style="color: var(--gray); margin-bottom: 0.5rem;">$<%= item.price.toFixed(2) %> each</p>
+                    </div>
+                    <div class="item-quantity" style="margin: 0 2rem;">
+                        <strong style="color: var(--dark);">Quantity: <%= item.quantity %></strong>
+                    </div>
+                    <div class="item-total" style="margin-right: 2rem;">
+                        <strong style="color: var(--success); font-size: 1.2rem;">
+                            $<%= (item.price * item.quantity).toFixed(2) %>
+                        </strong>
+                    </div>
+                    <form action="/cart/remove/<%= item.id %>" method="POST" class="item-remove">
+                        <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem;">
+                            🗑️ Remove
+                        </button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="cart-summary fade-in" style="animation-delay: 0.3s;">
+            <div class="total-amount" style="margin-bottom: 2rem;">
+                <h2 style="color: var(--dark);">Total: $<%= total %></h2>
+            </div>
+            <form action="/cart/checkout" method="POST">
+                <button type="submit" class="btn btn-success btn-large" style="font-size: 1.2rem; padding: 1rem 3rem;">
+                    🎉 Proceed to Checkout
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem; color: var(--gray);">
+                Continue <a href="/shop" style="color: var(--primary);">shopping</a>
+            </p>
+        </div>
+    <% } else { %>
+        <div class="empty-cart fade-in">
+            <div style="text-align: center; padding: 4rem 0;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🛒</div>
+                <h2 style="color: var(--gray); margin-bottom: 1rem;">Your cart is empty</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem;">Browse our amazing collection and add some games to your cart!</p>
+                <a href="/shop" class="btn btn-primary btn-large">🎮 Start Shopping</a>
+            </div>
+        </div>
+    <% } %>
+</div>
+
+<%- include('partials/footer') %>

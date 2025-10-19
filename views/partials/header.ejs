@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameZone - Ultimate Gaming Experience</title>
+    <meta name="description" content="Discover the ultimate gaming collection with GameZone. Premium games, consoles, and accessories for true gamers.">
+    <meta name="keywords" content="gaming, games, consoles, accessories, esports, gaming shop">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="GameZone - Ultimate Gaming Experience">
+    <meta property="og:description" content="Discover the ultimate gaming collection with GameZone">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload important resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    
+    <style>
+      /* Enhanced Header Styles */
+      .navbar {
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .navbar.scrolled {
+        background: rgba(15, 23, 42, 0.98);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        padding: 0.5rem 0;
+      }
+
+      .navbar.hidden {
+        transform: translateY(-100%);
+      }
+
+      .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .nav-logo a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.75rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav-logo a::before {
+        content: '🎮';
+        font-size: 1.5rem;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      }
+
+      .nav-logo a:hover {
+        transform: translateY(-1px);
+        text-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius-xl);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        border: 1px solid transparent;
+      }
+
+      .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        border-radius: var(--radius-xl);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: white;
+        transform: translateY(-2px);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+
+      .nav-link:hover::before {
+        opacity: 1;
+      }
+
+      .nav-link.active {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        border-color: rgba(99, 102, 241, 0.5);
+      }
+
+      .nav-link.active::before {
+        display: none;
+      }
+
+      .cart-count {
+        background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+        color: white;
+        padding: 0.2rem 0.5rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-left: 0.5rem;
+        box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);
+        animation: pulse 2s infinite;
+      }
+
+      .nav-user {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+        color: #06b6d4;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-xl);
+        font-weight: 600;
+        border: 1px solid rgba(6, 182, 212, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Mobile Menu Styles */
+      .mobile-menu-btn {
+        display: none;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        font-size: 1.25rem;
+        cursor: pointer;
+        padding: 0.75rem;
+        border-radius: var(--radius-lg);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .mobile-menu-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 1024px) {
+        .nav-menu {
+          gap: 0.25rem;
+        }
+        
+        .nav-link {
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-container {
+          padding: 0 1.5rem;
+          height: 65px;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav-menu {
+          position: fixed;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(15, 23, 42, 0.98);
+          backdrop-filter: blur(30px);
+          flex-direction: column;
+          padding: 2rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 999;
+          gap: 0.5rem;
+        }
+
+        .nav-menu.active {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .nav-item {
+          width: 100%;
+        }
+
+        .nav-link {
+          display: flex;
+          padding: 1rem 1.5rem;
+          border-radius: var(--radius-lg);
+          margin: 0.125rem 0;
+          justify-content: flex-start;
+          font-size: 1rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-user {
+          width: 100%;
+          justify-content: center;
+          margin: 0.5rem 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-container {
+          padding: 0 1rem;
+        }
+        
+        .nav-logo a {
+          font-size: 1.5rem;
+        }
+        
+        .nav-menu {
+          padding: 1.5rem;
+        }
+      }
+
+      /* Loading Bar */
+      .loading-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+        z-index: 1001;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+      }
+
+      /* Notification Styles */
+      .notification {
+        position: fixed;
+        top: 90px;
+        right: 20px;
+        padding: 1.25rem 1.5rem;
+        border-radius: var(--radius-2xl);
+        color: white;
+        font-weight: 600;
+        z-index: 1002;
+        box-shadow: var(--shadow-2xl);
+        transform: translateX(400px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 380px;
+      }
+
+      .notification.show {
+        transform: translateX(0);
+      }
+
+      .notification.success {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.9) 100%);
+      }
+
+      .notification.error {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%);
+      }
+
+      .notification.warning {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.9) 0%, rgba(217, 119, 6, 0.9) 100%);
+      }
+
+      .notification.info {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(37, 99, 235, 0.9) 100%);
+      }
+
+      /* Animations */
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Main Content Spacing */
+      .main-content {
+        margin-top: 70px;
+        min-height: calc(100vh - 70px);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          margin-top: 65px;
+          min-height: calc(100vh - 65px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- Notifications Container -->
+    <div id="notifications"></div>
+
+    <!-- Enhanced Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="nav-logo">
+          <a href="/">GameZone</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <span class="menu-icon">☰</span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item">
+            <a href="/" class="nav-link" data-link="home">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-text">Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/shop" class="nav-link" data-link="shop">
+              <span class="nav-icon">🛒</span>
+              <span class="nav-text">Shop</span>
+            </a>
+          </li>
+          <% if (user) { %>
+          <li class="nav-item">
+            <a href="/cart" class="nav-link" data-link="cart">
+              <span class="nav-icon">🛍️</span>
+              <span class="nav-text">Cart</span>
+              <% if (cartCount > 0) { %>
+              <span class="cart-count"><%= cartCount %></span>
+              <% } %>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/products/add" class="nav-link" data-link="add-product">
+              <span class="nav-icon">➕</span>
+              <span class="nav-text">Add Game</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link" data-link="logout">
+              <span class="nav-icon">🚪</span>
+              <span class="nav-text">Logout</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <span class="nav-user">
+              <span class="user-icon">👋</span>
+              <span class="user-text">Welcome, <%= user.username %>!</span>
+            </span>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a href="/cart" class="nav-link" data-link="cart">
+              <span class="nav-icon">🛍️</span>
+              <span class="nav-text">Cart</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link" data-link="login">
+              <span class="nav-icon">🔐</span>
+              <span class="nav-text">Login</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/register" class="nav-link" data-link="register">
+              <span class="nav-icon">🚀</span>
+              <span class="nav-text">Join Free</span>
+            </a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="main-content">
+    
+    <script>
+      // Enhanced JavaScript functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.getElementById('navbar');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const loadingBar = document.getElementById('loadingBar');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuIcon = mobileMenuBtn.querySelector('.menu-icon');
+        
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        // Enhanced scroll handler with throttling
+        function updateNavbar() {
+          const scrollY = window.scrollY;
+          
+          // Show/hide navbar based on scroll direction
+          if (scrollY > 100) {
+            navbar.classList.add('scrolled');
+            if (scrollY > lastScrollY && scrollY > 100) {
+              navbar.classList.add('hidden');
+            } else {
+              navbar.classList.remove('hidden');
+            }
+          } else {
+            navbar.classList.remove('scrolled', 'hidden');
+          }
+          
+          // Update loading bar progress
+          const scrollPercent = (scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+          loadingBar.style.transform = `scaleX(${Math.min(scrollPercent / 100, 1)})`;
+          
+          lastScrollY = scrollY;
+          ticking = false;
+        }
+
+        function requestTick() {
+          if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+          }
+        }
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+
+        // Enhanced mobile menu toggle
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isActive = navMenu.classList.toggle('active');
+          
+          if (isActive) {
+            menuIcon.textContent = '✕';
+            mobileMenuBtn.style.background = 'rgba(99, 102, 241, 0.2)';
+            mobileMenuBtn.style.borderColor = 'rgba(99, 102, 241, 0.5)';
+          } else {
+            menuIcon.textContent = '☰';
+            mobileMenuBtn.style.background = '';
+            mobileMenuBtn.style.borderColor = '';
+          }
+        });
+
+        // Close mobile menu when clicking outside or on a link
+        document.addEventListener('click', function(e) {
+          if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            closeMobileMenu();
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            closeMobileMenu();
+            
+            // Smooth page transitions with loading bar
+            if (this.getAttribute('href').startsWith('/')) {
+              const href = this.getAttribute('href');
+              if (href !== window.location.pathname) {
+                e.preventDefault();
+                animatePageTransition(href);
+              }
+            }
+          });
+        });
+
+        function closeMobileMenu() {
+          navMenu.classList.remove('active');
+          menuIcon.textContent = '☰';
+          mobileMenuBtn.style.background = '';
+          mobileMenuBtn.style.borderColor = '';
+        }
+
+        // Enhanced page transition animation
+        function animatePageTransition(href) {
+          loadingBar.style.transform = 'scaleX(0)';
+          loadingBar.style.transition = 'none';
+          
+          setTimeout(() => {
+            loadingBar.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            loadingBar.style.transform = 'scaleX(1)';
+          }, 10);
+          
+          setTimeout(() => {
+            window.location.href = href;
+          }, 600);
+        }
+
+        // Active link highlighting with smooth transitions
+        function updateActiveLink() {
+          const currentPath = window.location.pathname;
+          navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            if (linkPath === currentPath || 
+                (currentPath.startsWith('/shop') && linkPath === '/shop') ||
+                (currentPath.startsWith('/products') && linkPath === '/products/add')) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+
+        updateActiveLink();
+
+        // Enhanced hover effects with physics
+        navLinks.forEach(link => {
+          link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.02)';
+            this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+          });
+          
+          link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+          });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeMobileMenu();
+          }
+          
+          // Tab navigation for accessibility
+          if (e.key === 'Tab' && navMenu.classList.contains('active')) {
+            const focusableElements = navMenu.querySelectorAll('a, button, [tabindex]');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        });
+
+        // Enhanced notification system
+        window.showNotification = function(message, type = 'success', duration = 4000) {
+          const notification = document.createElement('div');
+          notification.className = `notification ${type}`;
+          notification.setAttribute('role', 'alert');
+          notification.setAttribute('aria-live', 'polite');
+          
+          const icons = {
+            success: '✅',
+            error: '❌',
+            warning: '⚠️',
+            info: 'ℹ️'
+          };
+          
+          notification.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="font-size: 1.2rem;">${icons[type] || '💬'}</span>
+              <span>${message}</span>
+            </div>
+          `;
+          
+          const notificationsContainer = document.getElementById('notifications');
+          notificationsContainer.appendChild(notification);
+          
+          // Trigger animation
+          setTimeout(() => notification.classList.add('show'), 10);
+          
+          // Auto remove with smooth exit
+          setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+              if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+              }
+            }, 400);
+          }, duration);
+        };
+
+        // Performance optimization - Intersection Observer for nav items
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.1 });
+
+        // Preload critical resources
+        function preloadCriticalResources() {
+          const resources = [
+            '/css/style.css',
+            '/js/main.js'
+          ];
+          
+          resources.forEach(resource => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = resource;
+            link.as = resource.endsWith('.css') ? 'style' : 'script';
+            document.head.appendChild(link);
+          });
+        }
+
+        preloadCriticalResources();
+
+        // Performance monitoring with enhanced metrics
+        if ('performance' in window) {
+          window.addEventListener('load', () => {
+            const nav = performance.getEntriesByType('navigation')[0];
+            const loadTime = nav.loadEventEnd - nav.navigationStart;
+            const domReadyTime = nav.domContentLoadedEventEnd - nav.navigationStart;
+            
+            console.log(`🚀 GameZone Performance:
+              📊 Page Load: ${loadTime.toFixed(0)}ms
+              ⚡ DOM Ready: ${domReadyTime.toFixed(0)}ms
+              🎯 Navigation: Optimized
+            `);
+          });
+        }
+
+        // Add subtle parallax effect to navbar on scroll
+        window.addEventListener('scroll', function() {
+          const scrolled = window.pageYOffset;
+          const parallax = scrolled * -0.5;
+          navbar.style.transform = `translateY(${navbar.classList.contains('hidden') ? '-100%' : '0'})`;
+        }, { passive: true });
+      });
+
+      // Enhanced console branding with animations
+      const consoleStyle = `
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+      `;
+
+      const consoleText = `
+        🎮 GameZone Development Console
+        ================================
+        
+        🚀 Version: 3.0.0 | Premium Design
+        ⚡ Performance: Optimized
+        🎨 UI/UX: Enhanced
+        🔧 Features: Modern Stack
+        
+        Ready for an epic gaming experience! 🕹️
+      `;
+
+      console.log(`%c${consoleText}`, consoleStyle);
+    </script>
+  </body>
+</html>

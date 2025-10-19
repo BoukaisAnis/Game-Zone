@@ -1,0 +1,22 @@
+<%- include('partials/header', { user, cartCount }) %>
+
+<div class="container">
+    <div class="shop-header">
+        <h1>🎉 Order Successful!</h1>
+        <p>Thank you for your purchase. Your games are on the way!</p>
+    </div>
+
+    <div class="success-message fade-in" style="text-align: center; padding: 3rem; background: white; border-radius: var(--border-radius-lg); box-shadow: var(--shadow); margin: 2rem 0;">
+        <div style="font-size: 5rem; margin-bottom: 1rem;">✅</div>
+        <h2 style="color: var(--success); margin-bottom: 1rem;">Order Confirmed</h2>
+        <p style="color: var(--gray); font-size: 1.1rem; margin-bottom: 2rem;">
+            Your order has been successfully processed. You will receive a confirmation email shortly.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="/shop" class="btn btn-primary btn-large">🔄 Continue Shopping</a>
+            <a href="/" class="btn btn-outline btn-large">🏠 Back to Home</a>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
